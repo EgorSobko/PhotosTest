@@ -3,6 +3,8 @@ import BrightFutures
 
 public protocol PhotosService {
     func photos() -> Future<PhotosResponse, ServiceTransportError>
+    func albums() -> Future<AlbumsResponse, ServiceTransportError>
+    func createNewPhoto(with context: NewPhotoContext) -> Future<IgnorableResponse, ServiceTransportError>
 }
 
 extension ServiceImplementation {
@@ -27,10 +29,23 @@ extension ServiceImplementation {
             return request(GetPhotos())
         }
         
+        public func albums() -> Future<AlbumsResponse, ServiceTransportError> {
+            return request(GetAlbums())
+        }
+        
+        public func createNewPhoto(with context: NewPhotoContext) -> Future<IgnorableResponse, ServiceTransportError> {
+            return request(PostPhotos(context: context))
+        }
+        
         // MARK: - Private
         
         private struct GetPhotos: Endpoint {
             typealias ReturnType = PhotosResponse
+            typealias ErrorType = ServiceTransportError
+        }
+        
+        private struct GetAlbums: Endpoint {
+            typealias ReturnType = AlbumsResponse
             typealias ErrorType = ServiceTransportError
         }
         
@@ -54,10 +69,5 @@ extension ServiceImplementation {
                 return try? JSONEncoder().encode(context)
             }
         }
-        
-        private struct GetAlbums: Endpoint {
-            typealias ReturnType = AlbumsResponse
-            typealias ErrorType = ServiceTransportError
-        }        
     }
 }

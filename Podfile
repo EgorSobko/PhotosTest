@@ -1,28 +1,29 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '12.0'
+
+BRIGHTFUTURES_VERSION = "7.0.1"
+QUICK_VERSION = "2.0.0"
+NIMBLE_VERSION = "8.0.1"
 
 target 'Api' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Api
+  pod 'BrightFutures', "#{BRIGHTFUTURES_VERSION}"
 
   target 'ApiTests' do
     inherit! :search_paths
-    # Pods for testing
+
+  pod 'Quick', "#{QUICK_VERSION}"
+  pod 'Nimble', "#{NIMBLE_VERSION}"
+
   end
 
 end
 
 target 'PhotosTest' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-
-  # Pods for PhotosTest
 
   target 'PhotosTestTests' do
     inherit! :search_paths
-    # Pods for testing
   end
 
 end

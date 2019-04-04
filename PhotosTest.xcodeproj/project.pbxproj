@@ -21,6 +21,18 @@
 		57A39FB52256418E00AF87F7 /* Api.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A39FA02256418D00AF87F7 /* Api.framework */; };
 		57A39FB62256418E00AF87F7 /* Api.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57A39FA02256418D00AF87F7 /* Api.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57A39FC2225641FF00AF87F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57A39FC0225641FF00AF87F7 /* Assets.xcassets */; };
+		57A39FC62256606C00AF87F7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FC52256606C00AF87F7 /* Endpoint.swift */; };
+		57A39FC8225660C700AF87F7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FC7225660C700AF87F7 /* Service.swift */; };
+		57A39FCA225660F700AF87F7 /* HTTPRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FC9225660F700AF87F7 /* HTTPRequestHandler.swift */; };
+		57A39FCC2256613D00AF87F7 /* URLSessionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FCB2256613D00AF87F7 /* URLSessionRequestHandler.swift */; };
+		57A39FCE2256621E00AF87F7 /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FCD2256621E00AF87F7 /* ServiceConfiguration.swift */; };
+		57A39FD022569DD700AF87F7 /* EndpointConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FCF22569DD700AF87F7 /* EndpointConfiguration.swift */; };
+		57A39FD222569DF700AF87F7 /* OperationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FD122569DF700AF87F7 /* OperationConfiguration.swift */; };
+		57A39FD722569E6800AF87F7 /* PhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FD622569E6800AF87F7 /* PhotosService.swift */; };
+		57A39FD922569F9100AF87F7 /* PhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FD822569F9100AF87F7 /* PhotosResponse.swift */; };
+		57A39FDB2256A68D00AF87F7 /* IgnorableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FDA2256A68D00AF87F7 /* IgnorableResponse.swift */; };
+		57A39FDD2256A6E300AF87F7 /* AlbumsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FDC2256A6E300AF87F7 /* AlbumsResponse.swift */; };
+		57A39FDF2256A78100AF87F7 /* NewPhotoContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39FDE2256A78100AF87F7 /* NewPhotoContext.swift */; };
 		F3FCB3035BDC81AF9BDE7AEE /* Pods_PhotosTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED580247950A93F9502003D /* Pods_PhotosTestTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +103,18 @@
 		57A39FB12256418E00AF87F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57A39FBF225641FE00AF87F7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57A39FC0225641FF00AF87F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		57A39FC52256606C00AF87F7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		57A39FC7225660C700AF87F7 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		57A39FC9225660F700AF87F7 /* HTTPRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestHandler.swift; sourceTree = "<group>"; };
+		57A39FCB2256613D00AF87F7 /* URLSessionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestHandler.swift; sourceTree = "<group>"; };
+		57A39FCD2256621E00AF87F7 /* ServiceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
+		57A39FCF22569DD700AF87F7 /* EndpointConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointConfiguration.swift; sourceTree = "<group>"; };
+		57A39FD122569DF700AF87F7 /* OperationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationConfiguration.swift; sourceTree = "<group>"; };
+		57A39FD622569E6800AF87F7 /* PhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosService.swift; sourceTree = "<group>"; };
+		57A39FD822569F9100AF87F7 /* PhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosResponse.swift; sourceTree = "<group>"; };
+		57A39FDA2256A68D00AF87F7 /* IgnorableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnorableResponse.swift; sourceTree = "<group>"; };
+		57A39FDC2256A6E300AF87F7 /* AlbumsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsResponse.swift; sourceTree = "<group>"; };
+		57A39FDE2256A78100AF87F7 /* NewPhotoContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPhotoContext.swift; sourceTree = "<group>"; };
 		67AE26566F0A7E0C513BA82E /* Pods-ApiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApiTests/Pods-ApiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AF1DAAE0B74C230A9EDE6242 /* Pods-Api.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Api.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Api/Pods-Api.debug.xcconfig"; sourceTree = "<group>"; };
 		CA593D897C028BF00FDF484D /* Pods-PhotosTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotosTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotosTest/Pods-PhotosTest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +216,8 @@
 		57A39FA12256418D00AF87F7 /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				57A39FD422569E4F00AF87F7 /* Services */,
+				57A39FC42256605200AF87F7 /* Foundation */,
 				57A39FA22256418D00AF87F7 /* Api.h */,
 				57A39FA32256418D00AF87F7 /* Info.plist */,
 			);
@@ -224,6 +250,40 @@
 				57A39F7A2256383300AF87F7 /* PhotosListViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		57A39FC42256605200AF87F7 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				57A39FC52256606C00AF87F7 /* Endpoint.swift */,
+				57A39FC7225660C700AF87F7 /* Service.swift */,
+				57A39FC9225660F700AF87F7 /* HTTPRequestHandler.swift */,
+				57A39FCB2256613D00AF87F7 /* URLSessionRequestHandler.swift */,
+				57A39FCD2256621E00AF87F7 /* ServiceConfiguration.swift */,
+				57A39FCF22569DD700AF87F7 /* EndpointConfiguration.swift */,
+				57A39FD122569DF700AF87F7 /* OperationConfiguration.swift */,
+				57A39FDA2256A68D00AF87F7 /* IgnorableResponse.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		57A39FD422569E4F00AF87F7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				57A39FD522569E5A00AF87F7 /* Photos */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		57A39FD522569E5A00AF87F7 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				57A39FD622569E6800AF87F7 /* PhotosService.swift */,
+				57A39FD822569F9100AF87F7 /* PhotosResponse.swift */,
+				57A39FDC2256A6E300AF87F7 /* AlbumsResponse.swift */,
+				57A39FDE2256A78100AF87F7 /* NewPhotoContext.swift */,
+			);
+			path = Photos;
 			sourceTree = "<group>";
 		};
 		972407D42A97360C3E02176B /* Pods */ = {
@@ -365,6 +425,7 @@
 					};
 					57A39F9F2256418D00AF87F7 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					57A39FA72256418E00AF87F7 = {
 						CreatedOnToolsVersion = 10.1;
@@ -568,6 +629,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57A39FDB2256A68D00AF87F7 /* IgnorableResponse.swift in Sources */,
+				57A39FDD2256A6E300AF87F7 /* AlbumsResponse.swift in Sources */,
+				57A39FC62256606C00AF87F7 /* Endpoint.swift in Sources */,
+				57A39FD222569DF700AF87F7 /* OperationConfiguration.swift in Sources */,
+				57A39FD022569DD700AF87F7 /* EndpointConfiguration.swift in Sources */,
+				57A39FD922569F9100AF87F7 /* PhotosResponse.swift in Sources */,
+				57A39FC8225660C700AF87F7 /* Service.swift in Sources */,
+				57A39FD722569E6800AF87F7 /* PhotosService.swift in Sources */,
+				57A39FCA225660F700AF87F7 /* HTTPRequestHandler.swift in Sources */,
+				57A39FDF2256A78100AF87F7 /* NewPhotoContext.swift in Sources */,
+				57A39FCC2256613D00AF87F7 /* URLSessionRequestHandler.swift in Sources */,
+				57A39FCE2256621E00AF87F7 /* ServiceConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,6 +817,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA593D897C028BF00FDF484D /* Pods-PhotosTest.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PhotosTest/Resources/Info.plist;
@@ -762,6 +836,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 02C6D384814FEEBB9ED4BE00 /* Pods-PhotosTest.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PhotosTest/Resources/Info.plist;
@@ -822,6 +897,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF1DAAE0B74C230A9EDE6242 /* Pods-Api.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -839,6 +915,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.egorsobko.Api;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -850,6 +927,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4808A25E737F25C737E070A7 /* Pods-Api.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

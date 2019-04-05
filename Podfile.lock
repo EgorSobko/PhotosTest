@@ -2,27 +2,31 @@ PODS:
   - BrightFutures (7.0.1):
     - Result (~> 4.1)
   - Nimble (8.0.1)
+  - Nuke (7.5.1)
   - Quick (2.0.0)
   - Result (4.1.0)
 
 DEPENDENCIES:
   - BrightFutures (= 7.0.1)
   - Nimble (= 8.0.1)
+  - Nuke (= 7.5.1)
   - Quick (= 2.0.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - BrightFutures
     - Nimble
+    - Nuke
     - Quick
     - Result
 
 SPEC CHECKSUMS:
   BrightFutures: 982d41952f770d6a9d8335f5f1d8b9c81a6ff430
   Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  Nuke: 3814db501e55f17951451839c726ffd91641e9a5
   Quick: ce1276c7c27ba2da3cb2fd0cde053c3648b3b22d
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
 
-PODFILE CHECKSUM: 41daf0f3e194da1b562e2cd0224459a853e7bbfc
+PODFILE CHECKSUM: 01e582f7b072fcd8a037694581deb9d7bee714d5
 
 COCOAPODS: 1.5.0

@@ -42,8 +42,8 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
         switch command {
         case .present(let viewState):
             self.viewState = viewState
-        case .presentError(let error):
-            handlePresentError(error)
+        case .presentError(let title, let description):
+            handlePresentError(withTitle: title, description: description)
         case .startLoading:
             loadingIndicator.isHidden = false
             tableView.isHidden = true
@@ -54,7 +54,11 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
     }
     
     // MARK: - Private methods
-    private func handlePresentError(_ error: Error) {
+    private func handlePresentError(withTitle title: String, description: String) {
+        let alertViewController = UIAlertController(title: title, message: description, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertViewController.addAction(okAction)
         
+        present(alertViewController, animated: true, completion: nil)
     }
 }

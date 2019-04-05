@@ -9,7 +9,7 @@ extension PhotosListKitchen {
     
     enum Command {
         case present(PhotosListViewController.ViewState)
-        case presentError(Error)
+        case presentError(title: String, description: String)
         case startLoading
         case stopLoading
     }
@@ -52,7 +52,7 @@ class PhotosListKitchen: Kitchen {
             .onFailure { [weak self] error in
                 guard let self = self else { return }
                 
-                self.delegate?.perform(.presentError(error))
+                self.delegate?.perform(.presentError(title: "Error", description: error.localizedDescription))
                 self.delegate?.perform(.stopLoading)
         }
     }

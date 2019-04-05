@@ -30,6 +30,8 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
         switch command {
         case .present(let viewState):
             self.viewState = viewState
+        case .presentError(let error):
+            break
         }
     }
 }

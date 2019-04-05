@@ -9,6 +9,9 @@ extension PhotosListKitchen {
     
     enum Command {
         case present(PhotosListViewController.ViewState)
+        case presentError(Error)
+        case startLoading
+        case stopLoading
     }
 }
 
@@ -31,7 +34,24 @@ class PhotosListKitchen: Kitchen {
     func receive(event: PhotosListKitchen.ViewEvent) {
         switch event {
         case .viewDidLoad:
-            delegate?.perform(.present(PhotosListViewController.ViewState()))
+            handleViewDidLoad()
+        }
+    }
+    
+    // MARK: - Private methods
+    private func handleViewDidLoad() {
+        delegate?.perform(.startLoading)
+        photosService.photos()
+            .onSuccess { [weak self] response in
+                guard let self = self else { return }
+                
+                self.delegate?.perform(.stopLoading)
+            }
+            .onFailure { [weak self] error in
+                guard let self = self else { return }
+                
+                self.delegate?.perform(.presentError(error))
+                self.delegate?.perform(.stopLoading)
         }
     }
 }

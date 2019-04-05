@@ -49,6 +49,10 @@
 		57A3A0142257554000AF87F7 /* PhotosListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3A0132257554000AF87F7 /* PhotosListBuilder.swift */; };
 		57A3A0162257554B00AF87F7 /* PhotosListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3A0152257554B00AF87F7 /* PhotosListRouter.swift */; };
 		57A3A018225755A700AF87F7 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3A017225755A700AF87F7 /* ViewControllerFactory.swift */; };
+		57A3A01B22576D6B00AF87F7 /* AddPhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57A3A01A22576D6B00AF87F7 /* AddPhoto.storyboard */; };
+		57A3A01D22576DF000AF87F7 /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3A01C22576DF000AF87F7 /* AddPhotoViewController.swift */; };
+		57A3A01F22576DFE00AF87F7 /* AddPhotoKitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3A01E22576DFE00AF87F7 /* AddPhotoKitchen.swift */; };
+		57A3A02122576E0A00AF87F7 /* AddPhotoViewStateFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3A02022576E0A00AF87F7 /* AddPhotoViewStateFactory.swift */; };
 		EF7080C48CF79FA6F36066E2 /* Pods_Kit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFF1591E9D5BFB284CF7205 /* Pods_Kit.framework */; };
 		F3FCB3035BDC81AF9BDE7AEE /* Pods_PhotosTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED580247950A93F9502003D /* Pods_PhotosTestTests.framework */; };
 /* End PBXBuildFile section */
@@ -171,6 +175,10 @@
 		57A3A0132257554000AF87F7 /* PhotosListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListBuilder.swift; sourceTree = "<group>"; };
 		57A3A0152257554B00AF87F7 /* PhotosListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListRouter.swift; sourceTree = "<group>"; };
 		57A3A017225755A700AF87F7 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		57A3A01A22576D6B00AF87F7 /* AddPhoto.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddPhoto.storyboard; sourceTree = "<group>"; };
+		57A3A01C22576DF000AF87F7 /* AddPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoViewController.swift; sourceTree = "<group>"; };
+		57A3A01E22576DFE00AF87F7 /* AddPhotoKitchen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoKitchen.swift; sourceTree = "<group>"; };
+		57A3A02022576E0A00AF87F7 /* AddPhotoViewStateFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoViewStateFactory.swift; sourceTree = "<group>"; };
 		67AE26566F0A7E0C513BA82E /* Pods-ApiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApiTests/Pods-ApiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6FFF1591E9D5BFB284CF7205 /* Pods_Kit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9347114BCFA6BB6359B0F057 /* Pods-Kit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kit/Pods-Kit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -272,6 +280,7 @@
 		57A39F772256383300AF87F7 /* PhotosTest */ = {
 			isa = PBXGroup;
 			children = (
+				57A3A01922576D4D00AF87F7 /* AddPhoto */,
 				57A39FC322564CCE00AF87F7 /* PhotosList */,
 				57A39FBE225641B600AF87F7 /* Resources */,
 				57A39F982256409600AF87F7 /* AppDelegate */,
@@ -403,6 +412,17 @@
 				57A3A017225755A700AF87F7 /* ViewControllerFactory.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		57A3A01922576D4D00AF87F7 /* AddPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				57A3A01A22576D6B00AF87F7 /* AddPhoto.storyboard */,
+				57A3A01C22576DF000AF87F7 /* AddPhotoViewController.swift */,
+				57A3A01E22576DFE00AF87F7 /* AddPhotoKitchen.swift */,
+				57A3A02022576E0A00AF87F7 /* AddPhotoViewStateFactory.swift */,
+			);
+			path = AddPhoto;
 			sourceTree = "<group>";
 		};
 		972407D42A97360C3E02176B /* Pods */ = {
@@ -645,6 +665,7 @@
 			files = (
 				57A3A010225740EE00AF87F7 /* PhotoTableViewCell.xib in Resources */,
 				57A39F832256383400AF87F7 /* LaunchScreen.storyboard in Resources */,
+				57A3A01B22576D6B00AF87F7 /* AddPhoto.storyboard in Resources */,
 				57A39F7E2256383300AF87F7 /* PhotosList.storyboard in Resources */,
 				57A39FC2225641FF00AF87F7 /* Assets.xcassets in Resources */,
 			);
@@ -870,9 +891,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				57A3A00F225740EE00AF87F7 /* PhotoTableViewCell.swift in Sources */,
+				57A3A01D22576DF000AF87F7 /* AddPhotoViewController.swift in Sources */,
 				57A39FE32256AE2100AF87F7 /* PhotosListViewStateFactory.swift in Sources */,
 				57A3A0142257554000AF87F7 /* PhotosListBuilder.swift in Sources */,
 				57A39FE12256AE0F00AF87F7 /* PhotosListKitchen.swift in Sources */,
+				57A3A01F22576DFE00AF87F7 /* AddPhotoKitchen.swift in Sources */,
+				57A3A02122576E0A00AF87F7 /* AddPhotoViewStateFactory.swift in Sources */,
 				57A39F9A225640CB00AF87F7 /* AppDelegate.swift in Sources */,
 				57A39F7B2256383300AF87F7 /* PhotosListViewController.swift in Sources */,
 				57A3A0162257554B00AF87F7 /* PhotosListRouter.swift in Sources */,

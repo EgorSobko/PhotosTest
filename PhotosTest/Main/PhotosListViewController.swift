@@ -17,6 +17,8 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
         didSet {
             let cellNib = UINib(nibName: Constant.photoCellIdentifier, bundle: nil)
             tableView.register(cellNib, forCellReuseIdentifier: Constant.photoCellIdentifier)
+            
+            tableView.dataSource = self
         }
     }
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
@@ -61,4 +63,23 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
         
         present(alertViewController, animated: true, completion: nil)
     }
+}
+
+extension PhotosListViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewState?.cellViewStates.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constant.photoCellIdentifier, for: indexPath) as? PhotoTableViewCell,
+            let cellViewState = viewState?.cellViewStates[indexPath.row] else {
+                return UITableViewCell()
+        }
+        
+        cell.configure(with: cellViewState)
+        
+        return cell
+    }    
 }

@@ -3,10 +3,15 @@ import Kit
 
 extension AddPhotoViewController {
     struct ViewState {
+        struct Title {
+            let description: String
+            let isSelected: Bool
+        }
+        
         let photoTitleDescription: String
         let albumTitleDescription: String
         let submitButtonTitle: String
-        let availableTitles: [String]
+        let availableTitles: [Title]
     }
 }
 
@@ -114,7 +119,8 @@ extension AddPhotoViewController: UITableViewDataSource {
             cell = UITableViewCell(style: .default, reuseIdentifier: Constant.defaultCellIdentifier)
         }
         
-        cell.textLabel?.text = title
+        cell.textLabel?.text = title.description
+        cell.accessoryType = title.isSelected ? .checkmark : .none
         
         return cell
     }
@@ -122,4 +128,8 @@ extension AddPhotoViewController: UITableViewDataSource {
 
 extension AddPhotoViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        kitchen.receive(event: .didSelectRow(atIndex: indexPath.row))
+    }
 }

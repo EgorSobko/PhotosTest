@@ -5,6 +5,7 @@ import Kit
 extension AddPhotoKitchen {
     enum ViewEvent {
         case viewDidLoad
+        case didSelectRow(atIndex: Int)
     }
     
     enum Command {
@@ -24,6 +25,9 @@ class AddPhotoKitchen: Kitchen {
     private let viewStateFactory: AddPhotoViewStateFactory
     private let photosService: PhotosService
     
+    private var albums: [AlbumsResponse.Album] = []
+    private var selectedIndex: Int?
+    
     // MARK: - Init
     init(viewStateFactory: AddPhotoViewStateFactory, photosService: PhotosService) {
         self.viewStateFactory = viewStateFactory
@@ -35,12 +39,14 @@ class AddPhotoKitchen: Kitchen {
         switch event {
         case .viewDidLoad:
             handleViewDidLoad()
+        case .didSelectRow(let index):
+            handleDidSelect(atIndex: index)
         }
     }
     
     // MARK: - Private methods
     private func handleViewDidLoad() {
-        let viewState = viewStateFactory.make(with: nil)
+        let viewState = viewStateFactory.make(with: nil, selectedIndex: nil)
         delegate?.perform(.present(viewState))
         delegate?.perform(.startLoadingTitles)
         
@@ -48,7 +54,8 @@ class AddPhotoKitchen: Kitchen {
             .onSuccess { [weak self] response in
                 guard let self = self else { return }
                 
-                let viewState = self.viewStateFactory.make(with: response)
+                self.albums = response.albums
+                let viewState = self.viewStateFactory.make(with: response.albums, selectedIndex: nil)
                 self.delegate?.perform(.present(viewState))
                 self.delegate?.perform(.stopLoadingTitles)
         }
@@ -58,5 +65,18 @@ class AddPhotoKitchen: Kitchen {
                 self.delegate?.perform(.presentError(title: "Error", description: error.localizedDescription))
                 self.delegate?.perform(.stopLoadingTitles)
         }
+    }
+    
+    private func handleDidSelect(atIndex index: Int) {
+        let viewState: AddPhotoViewController.ViewState
+        
+        if let selectedIndex = selectedIndex, selectedIndex == index {
+            viewState = viewStateFactory.make(with: albums, selectedIndex: nil)
+            self.selectedIndex = nil
+        } else {
+            viewState = viewStateFactory.make(with: albums, selectedIndex: index)
+            self.selectedIndex = index
+        }
+        delegate?.perform(.present(viewState))
     }
 }

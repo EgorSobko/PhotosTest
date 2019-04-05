@@ -8,9 +8,14 @@ extension AddPhotoViewController {
             let isSelected: Bool
         }
         
+        struct SubmitButton {
+            let title: String
+            let isActive: Bool
+        }
+        
         let photoTitleDescription: String
         let albumTitleDescription: String
-        let submitButtonTitle: String
+        let submitButton: SubmitButton
         let availableTitles: [Title]
     }
 }
@@ -72,7 +77,7 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
         case .present(let viewState):
             apply(viewState)
         case .presentError(let title, let description):
-            handlePresentError(withTitle: title, description: description)
+            handlePresent(withTitle: title, description: description)
         case .startLoadingTitles:
             loadingIndicator.isHidden = false
             albumTitlesTableView.isHidden = true
@@ -81,6 +86,10 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
             albumTitlesTableView.isHidden = false
         case .resignFirstResponder:
             view.endEditing(true)
+        case .presentSuccess(let title):
+            handlePresent(withTitle: title, description: "")
+        case .presentSubmitButtonViewState(let buttonViewState):
+            applySubmitButtonViewState(buttonViewState)
         }
     }
     
@@ -95,14 +104,19 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
         
         photoTitleDescriptionLabel.text = viewState.photoTitleDescription
         albumTitleDescriptionLabel.text = viewState.albumTitleDescription
-        submitButton.setTitle(viewState.submitButtonTitle, for: .normal)
+        applySubmitButtonViewState(viewState.submitButton)
         
         if !viewState.availableTitles.isEmpty {
             albumTitlesTableView.reloadData()
         }
     }
     
-    private func handlePresentError(withTitle title: String, description: String) {
+    private func applySubmitButtonViewState(_ viewState: ViewState.SubmitButton) {
+        submitButton.setTitle(viewState.title, for: .normal)
+        submitButton.isEnabled = viewState.isActive
+    }
+    
+    private func handlePresent(withTitle title: String, description: String) {
         let alertViewController = UIAlertController(title: title, message: description, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertViewController.addAction(okAction)
@@ -110,14 +124,12 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
         present(alertViewController, animated: true, completion: nil)
     }
     
-    @objc private func handleDone() {
-        
-    }
-    
     @objc private func photoTitleDidChange(_ sender: UITextField) {
         guard let text = sender.text else { return }
         
-        photoTitleDescriptionTextField.text = photoTitleTextFormatter.formatText(text)
+        let formatterText = photoTitleTextFormatter.formatText(text)
+        photoTitleDescriptionTextField.text = formatterText
+        kitchen.receive(event: .didChangePhotoTitle(formatterText))
     }
     
     @IBAction private func submit() {
@@ -161,7 +173,7 @@ extension AddPhotoViewController: UITableViewDelegate {
 extension AddPhotoViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        kitchen.receive(event: .submit(photoTitle: textField.text ?? ""))
+        kitchen.receive(event: .didTapReturn)
         
         return true
     }

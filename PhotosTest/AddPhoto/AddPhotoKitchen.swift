@@ -7,14 +7,18 @@ extension AddPhotoKitchen {
         case viewDidLoad
         case didSelectRow(atIndex: Int)
         case submit(photoTitle: String)
+        case didTapReturn
+        case didChangePhotoTitle(String)
     }
     
     enum Command {
         case present(AddPhotoViewController.ViewState)
+        case presentSubmitButtonViewState(AddPhotoViewController.ViewState.SubmitButton)
         case presentError(title: String, description: String)
         case startLoadingTitles
         case stopLoadingTitles
         case resignFirstResponder
+        case presentSuccess(title: String)
     }
 }
 
@@ -29,6 +33,7 @@ class AddPhotoKitchen: Kitchen {
     private let photoTitleValidator: TextValidator
     
     private var albums: [AlbumsResponse.Album] = []
+    private var photoTitle: String = ""
     private var selectedIndex: Int?
     
     // MARK: - Init
@@ -45,8 +50,13 @@ class AddPhotoKitchen: Kitchen {
             handleViewDidLoad()
         case .didSelectRow(let index):
             handleDidSelect(atIndex: index)
+            handleDidChangePhotoTitle(photoTitle, selectedIndex: selectedIndex)
         case .submit(let photoTitle):
             handleSubmit(withTitle: photoTitle)
+        case .didTapReturn:
+            delegate?.perform(.resignFirstResponder)
+        case .didChangePhotoTitle(let title):
+            handleDidChangePhotoTitle(title, selectedIndex: selectedIndex)
         }
     }
     
@@ -64,7 +74,7 @@ class AddPhotoKitchen: Kitchen {
                 let viewState = self.viewStateFactory.make(with: response.albums, selectedIndex: nil)
                 self.delegate?.perform(.present(viewState))
                 self.delegate?.perform(.stopLoadingTitles)
-        }
+            }
             .onFailure { [weak self] error in
                 guard let self = self else { return }
                 
@@ -87,16 +97,38 @@ class AddPhotoKitchen: Kitchen {
         delegate?.perform(.present(viewState))
     }
     
-    private func handleSubmit(withTitle title: String) {
-        delegate?.perform(.resignFirstResponder)
-        if photoTitleValidator.isTextValid(title) {
-            if let selectedIndex = selectedIndex {
-                print(selectedIndex)
-            } else {
-                delegate?.perform(.presentError(title: "No album title", description: "Please, select album title"))
-            }
+    private func handleDidChangePhotoTitle(_ title: String, selectedIndex: Int?) {
+        self.photoTitle = title
+        self.selectedIndex = selectedIndex
+        
+        let isActive = isSubmitButtonActive(withTitle: title, selectedIndex: selectedIndex)
+        let buttonViewState = viewStateFactory.makeSubmitButtonViewState(isActive: isActive)
+        delegate?.perform(.presentSubmitButtonViewState(buttonViewState))
+    }
+    
+    private func isSubmitButtonActive(withTitle title: String, selectedIndex: Int?) -> Bool {
+        if photoTitleValidator.isTextValid(title) && selectedIndex != nil {
+            return true
         } else {
-            delegate?.perform(.presentError(title: "Invalid photo title", description: "Photo title should be at least 8 characters"))
+            return false
+        }
+    }
+    
+    private func handleSubmit(withTitle title: String) {
+        guard let selectedIndex = selectedIndex else { return }
+        
+        let context = NewPhotoContext(title: title, albumTitle: albums[selectedIndex].title)
+        photosService.createNewPhoto(with: context)
+            .onSuccess { [weak self] _ in
+                guard let self = self else { return }
+                
+                self.delegate?.perform(.presentSuccess(title: "You did it!"))
+            }
+            .onFailure { [weak self] error in
+                guard let self = self else { return }
+                
+                self.delegate?.perform(.presentError(title: "Error", description: error.localizedDescription))
+                self.delegate?.perform(.stopLoadingTitles)
         }
     }
 }

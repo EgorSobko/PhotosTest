@@ -14,7 +14,11 @@ class AddPhotoViewStateFactory {
         
         return .init(photoTitleDescription: "Please, choose photo title",
                      albumTitleDescription: "Please, pick available album title",
-                     submitButtonTitle: "Submit",
+                     submitButton: makeSubmitButtonViewState(isActive: false),
                      availableTitles: availableTitles)
+    }
+    
+    func makeSubmitButtonViewState(isActive: Bool) -> AddPhotoViewController.ViewState.SubmitButton {
+        return .init(title: "Submit", isActive: isActive)
     }
 }

@@ -18,19 +18,27 @@ public class AnyKitchenDelegate<C>: KitchenDelegate {
     }
 }
 
-// MARK: - Private
+// MARK: - Implementation
 private class AbstractKitchenDelegate<C>: KitchenDelegate {
     func perform(_ command: C) { fatalError("abstract needs override") }
 }
 
 private class AnyKitchenDelegateBox<D: KitchenDelegate>: AbstractKitchenDelegate<D.Command> {
     private weak var concrete: D?
-
+    
     init(_ concrete: D) {
         self.concrete = concrete
     }
     
     override func perform(_ command: D.Command) {
-        concrete?.perform(command)
+        let dispatchBlock = DispatchWorkItem { [weak self] in
+            self?.concrete?.perform(command)
+        }
+        if Thread.isMainThread {
+            dispatchBlock.perform()
+        }
+        else {
+            DispatchQueue.main.async(execute: dispatchBlock)
+        }
     }
 }

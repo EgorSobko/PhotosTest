@@ -45,6 +45,8 @@ class PhotosListKitchen: Kitchen {
             .onSuccess { [weak self] response in
                 guard let self = self else { return }
                 
+                let viewState = self.viewStateFactory.make(with: response)
+                self.delegate?.perform(.present(viewState))
                 self.delegate?.perform(.stopLoading)
             }
             .onFailure { [weak self] error in

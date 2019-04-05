@@ -1,19 +1,19 @@
 import Foundation
 
 public struct PhotosResponse: Decodable {
-    struct Photo: Decodable {
+    public struct Photo: Decodable {
         let albumId: Int
         let id: Int
-        let title: String
-        let url: URL?
-        let thumbnailUrl: URL?
+        public let title: String
+        public let url: URL?
+        public let thumbnailUrl: URL?
     }
     
     enum CodingKeys: String, CodingKey {
         case photos
     }
     
-    let photos: [Photo]
+    public let photos: [Photo]
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

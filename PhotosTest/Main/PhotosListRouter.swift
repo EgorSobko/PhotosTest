@@ -16,7 +16,8 @@ class PhotosListRouter {
         
         let builder = PhotosListBuilder(viewControllerFactory: viewControllerFactory, photosServiceFactory: photosServiceFactory, photosListRoutable: self)
         let photosListViewController = builder.buildViewController()
-        window?.rootViewController = photosListViewController
+        let navigationController = UINavigationController(rootViewController: photosListViewController)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
         currentViewController = photosListViewController

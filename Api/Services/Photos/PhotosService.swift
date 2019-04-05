@@ -24,7 +24,6 @@ extension ServiceImplementation {
         }
         
         // MARK: - Public Methods
-        
         public func photos() -> Future<PhotosResponse, ServiceTransportError> {
             return request(GetPhotos())
         }
@@ -38,7 +37,6 @@ extension ServiceImplementation {
         }
         
         // MARK: - Private
-        
         private struct GetPhotos: Endpoint {
             typealias ReturnType = PhotosResponse
             typealias ErrorType = ServiceTransportError

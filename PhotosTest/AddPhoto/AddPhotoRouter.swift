@@ -4,8 +4,10 @@ import Api
 
 class AddPhotoRouter {
     
+    // MARK: - Properties
     private(set) weak var currentViewController: UIViewController?
     
+    // MARK: - Methods
     func execute(in viewController: UIViewController) {
         let viewControllerFactory = ViewControllerFactory()
         let photosServiceFactory = PhotosServiceFactory()

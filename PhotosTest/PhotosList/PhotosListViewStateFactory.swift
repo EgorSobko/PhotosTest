@@ -3,6 +3,7 @@ import Api
 
 class PhotosListViewStateFactory {
     
+    // MARK: - Methods
     func make(with response: PhotosResponse) -> PhotosListViewController.ViewState {
         let cellViewStates = response.photos
             .sorted(by: { $0.title.count < $1.title.count })

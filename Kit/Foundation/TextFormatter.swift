@@ -45,7 +45,6 @@ public protocol StringFormatable: class {
 }
 
 // MARK: - Private
-
 private class StripLeadingAndTrailingSpaces: StringFormatable {
     public func formatText(_ string: String) -> String {
         return string.trimmingCharacters(in: .whitespacesAndNewlines)

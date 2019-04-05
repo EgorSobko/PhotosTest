@@ -3,6 +3,7 @@ import Api
 
 class AddPhotoViewStateFactory {
     
+    // MARK: - Methods
     func make(with albums: [AlbumsResponse.Album]?, selectedIndex: Int?) -> AddPhotoViewController.ViewState {
         var availableTitles: [AddPhotoViewController.ViewState.Title] = []
         if let albums = albums {

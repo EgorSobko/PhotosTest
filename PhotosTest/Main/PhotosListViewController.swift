@@ -1,20 +1,35 @@
-//
-//  ViewController.swift
-//  PhotosTest
-//
-//  Created by Egor Sobko on 4/4/19.
-//  Copyright © 2019 Egor Sobko. All rights reserved.
-//
-
 import UIKit
+import Kit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+extension PhotosListViewController {
+    struct ViewState {
+        
     }
-
-
 }
 
+class PhotosListViewController: UIViewController, KitchenDelegate {    
+
+    // MARK: - Proeprties
+    private(set) var viewState: ViewState?
+    
+    // MARK: - Private properties
+    private var kitchen: AnyKitchen<PhotosListKitchen.ViewEvent, PhotosListKitchen.Command>!
+
+    // MARK: - Methods
+    func inject(kitchen: AnyKitchen<PhotosListKitchen.ViewEvent, PhotosListKitchen.Command>) {
+        self.kitchen = kitchen
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        kitchen.receive(event: .viewDidLoad)
+    }
+    
+    func perform(_ command: PhotosListKitchen.Command) {
+        switch command {
+        case .present(let viewState):
+            self.viewState = viewState
+        }
+    }
+}

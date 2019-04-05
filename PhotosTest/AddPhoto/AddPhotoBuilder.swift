@@ -22,7 +22,7 @@ class AddPhotoBuilder {
         let addPhotoKitchen = buildKitchen()
         let anyKitchen = AnyKitchen(addPhotoKitchen)
         anyKitchen.delegate = AnyKitchenDelegate(addPhotoViewController)
-        addPhotoViewController.inject(kitchen: anyKitchen, photoTitleTextFormatter: TextFormatters.albumTitleTextFormatter)
+        addPhotoViewController.inject(kitchen: anyKitchen, photoTitleTextFormatter: TextFormatters.photoTitleTextFormatter)
         
         return addPhotoViewController
     }
@@ -32,6 +32,6 @@ class AddPhotoBuilder {
         let viewStateFactory = AddPhotoViewStateFactory()
         let photosService = photosServiceFactory.make()
         
-        return AddPhotoKitchen(viewStateFactory: viewStateFactory, photosService: photosService)
+        return AddPhotoKitchen(viewStateFactory: viewStateFactory, photosService: photosService, photoTitleValidator: TextValidators.photoTitleTextValidator)
     }
 }

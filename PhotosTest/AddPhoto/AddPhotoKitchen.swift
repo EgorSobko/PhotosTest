@@ -14,6 +14,7 @@ extension AddPhotoKitchen {
         case presentError(title: String, description: String)
         case startLoadingTitles
         case stopLoadingTitles
+        case resignFirstResponder
     }
 }
 
@@ -25,14 +26,16 @@ class AddPhotoKitchen: Kitchen {
     // MARK: - Private properties
     private let viewStateFactory: AddPhotoViewStateFactory
     private let photosService: PhotosService
+    private let photoTitleValidator: TextValidator
     
     private var albums: [AlbumsResponse.Album] = []
     private var selectedIndex: Int?
     
     // MARK: - Init
-    init(viewStateFactory: AddPhotoViewStateFactory, photosService: PhotosService) {
+    init(viewStateFactory: AddPhotoViewStateFactory, photosService: PhotosService, photoTitleValidator: TextValidator) {
         self.viewStateFactory = viewStateFactory
         self.photosService = photosService
+        self.photoTitleValidator = photoTitleValidator
     }
     
     // MARK: - Methods
@@ -85,6 +88,15 @@ class AddPhotoKitchen: Kitchen {
     }
     
     private func handleSubmit(withTitle title: String) {
-        print(title)
+        delegate?.perform(.resignFirstResponder)
+        if photoTitleValidator.isTextValid(title) {
+            if let selectedIndex = selectedIndex {
+                print(selectedIndex)
+            } else {
+                delegate?.perform(.presentError(title: "No album title", description: "Please, select album title"))
+            }
+        } else {
+            delegate?.perform(.presentError(title: "Invalid photo title", description: "Photo title should be at least 8 characters"))
+        }
     }
 }

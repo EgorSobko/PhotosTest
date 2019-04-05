@@ -79,6 +79,8 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
         case .stopLoadingTitles:
             loadingIndicator.isHidden = true
             albumTitlesTableView.isHidden = false
+        case .resignFirstResponder:
+            view.endEditing(true)
         }
     }
     
@@ -116,6 +118,10 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
         guard let text = sender.text else { return }
         
         photoTitleDescriptionTextField.text = photoTitleTextFormatter.formatText(text)
+    }
+    
+    @IBAction private func submit() {
+        kitchen.receive(event: .submit(photoTitle: photoTitleDescriptionTextField.text ?? ""))
     }
 }
 

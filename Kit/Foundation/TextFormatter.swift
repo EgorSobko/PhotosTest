@@ -36,8 +36,7 @@ public class TextFormatter {
 
 public struct TextFormatters {
     
-    static public let albumTitleTextFormatter = TextFormatter([stripLeadingAndTrailingSpacesFormatter, albumTitleLengthFormatter])
-    static private let albumTitleLengthFormatter = MaxCharsFormatter(maxChars: 8)
+    static public let photoTitleTextFormatter = TextFormatter([stripLeadingAndTrailingSpacesFormatter])
     static private let stripLeadingAndTrailingSpacesFormatter = StripLeadingAndTrailingSpaces()
 }
 

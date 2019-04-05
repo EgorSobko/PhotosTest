@@ -23,6 +23,7 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
             tableView.dataSource = self
             tableView.delegate = self
             tableView.estimatedRowHeight = UITableView.automaticDimension
+            tableView.allowsSelection = false
         }
     }
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!

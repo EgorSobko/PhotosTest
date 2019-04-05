@@ -40,10 +40,12 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
     
     // MARK: - Private properties
     private var kitchen: AnyKitchen<AddPhotoKitchen.ViewEvent, AddPhotoKitchen.Command>!
+    private var photoTitleTextFormatter: TextFormatter!
     
     // MARK: - Methods
-    func inject(kitchen: AnyKitchen<AddPhotoKitchen.ViewEvent, AddPhotoKitchen.Command>) {
+    func inject(kitchen: AnyKitchen<AddPhotoKitchen.ViewEvent, AddPhotoKitchen.Command>, photoTitleTextFormatter: TextFormatter) {
         self.kitchen = kitchen
+        self.photoTitleTextFormatter = photoTitleTextFormatter
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -61,6 +63,7 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTextField()
         kitchen.receive(event: .viewDidLoad)
     }
     
@@ -80,6 +83,11 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
     }
     
     // MARK: - Private methods
+    private func setupTextField() {
+        photoTitleDescriptionTextField.delegate = self
+        photoTitleDescriptionTextField.addTarget(self, action: #selector(photoTitleDidChange), for: .editingChanged)
+    }
+    
     private func apply(_ viewState: ViewState) {
         self.viewState = viewState
         
@@ -98,6 +106,16 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
         alertViewController.addAction(okAction)
         
         present(alertViewController, animated: true, completion: nil)
+    }
+    
+    @objc private func handleDone() {
+        
+    }
+    
+    @objc private func photoTitleDidChange(_ sender: UITextField) {
+        guard let text = sender.text else { return }
+        
+        photoTitleDescriptionTextField.text = photoTitleTextFormatter.formatText(text)
     }
 }
 
@@ -131,5 +149,14 @@ extension AddPhotoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         kitchen.receive(event: .didSelectRow(atIndex: indexPath.row))
+    }
+}
+
+extension AddPhotoViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        kitchen.receive(event: .submit(photoTitle: textField.text ?? ""))
+        
+        return true
     }
 }

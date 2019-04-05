@@ -22,7 +22,7 @@ class AddPhotoBuilder {
         let addPhotoKitchen = buildKitchen()
         let anyKitchen = AnyKitchen(addPhotoKitchen)
         anyKitchen.delegate = AnyKitchenDelegate(addPhotoViewController)
-        addPhotoViewController.inject(kitchen: anyKitchen)
+        addPhotoViewController.inject(kitchen: anyKitchen, photoTitleTextFormatter: TextFormatters.albumTitleTextFormatter)
         
         return addPhotoViewController
     }

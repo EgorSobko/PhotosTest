@@ -6,6 +6,7 @@ extension AddPhotoKitchen {
     enum ViewEvent {
         case viewDidLoad
         case didSelectRow(atIndex: Int)
+        case submit(photoTitle: String)
     }
     
     enum Command {
@@ -41,6 +42,8 @@ class AddPhotoKitchen: Kitchen {
             handleViewDidLoad()
         case .didSelectRow(let index):
             handleDidSelect(atIndex: index)
+        case .submit(let photoTitle):
+            handleSubmit(withTitle: photoTitle)
         }
     }
     
@@ -77,6 +80,11 @@ class AddPhotoKitchen: Kitchen {
             viewState = viewStateFactory.make(with: albums, selectedIndex: index)
             self.selectedIndex = index
         }
+        
         delegate?.perform(.present(viewState))
+    }
+    
+    private func handleSubmit(withTitle title: String) {
+        print(title)
     }
 }

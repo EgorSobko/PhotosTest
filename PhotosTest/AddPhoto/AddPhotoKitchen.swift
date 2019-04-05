@@ -56,7 +56,8 @@ class AddPhotoKitchen: Kitchen {
         case .didTapReturn:
             delegate?.perform(.resignFirstResponder)
         case .didChangePhotoTitle(let title):
-            handleDidChangePhotoTitle(title, selectedIndex: selectedIndex)
+            photoTitle = title
+            handleDidChangePhotoTitle(photoTitle, selectedIndex: selectedIndex)
         }
     }
     
@@ -97,10 +98,7 @@ class AddPhotoKitchen: Kitchen {
         delegate?.perform(.present(viewState))
     }
     
-    private func handleDidChangePhotoTitle(_ title: String, selectedIndex: Int?) {
-        self.photoTitle = title
-        self.selectedIndex = selectedIndex
-        
+    private func handleDidChangePhotoTitle(_ title: String, selectedIndex: Int?) {d
         let isActive = isSubmitButtonActive(withTitle: title, selectedIndex: selectedIndex)
         let buttonViewState = viewStateFactory.makeSubmitButtonViewState(isActive: isActive)
         delegate?.perform(.presentSubmitButtonViewState(buttonViewState))

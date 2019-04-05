@@ -98,7 +98,7 @@ class AddPhotoKitchen: Kitchen {
         delegate?.perform(.present(viewState))
     }
     
-    private func handleDidChangePhotoTitle(_ title: String, selectedIndex: Int?) {d
+    private func handleDidChangePhotoTitle(_ title: String, selectedIndex: Int?) {
         let isActive = isSubmitButtonActive(withTitle: title, selectedIndex: selectedIndex)
         let buttonViewState = viewStateFactory.makeSubmitButtonViewState(isActive: isActive)
         delegate?.perform(.presentSubmitButtonViewState(buttonViewState))

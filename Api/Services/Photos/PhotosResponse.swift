@@ -9,15 +9,11 @@ public struct PhotosResponse: Decodable {
         public let thumbnailUrl: URL?
     }
     
-    enum CodingKeys: String, CodingKey {
-        case photos
-    }
-    
     public let photos: [Photo]
     
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.singleValueContainer()
         
-        self.photos = try container.decode([Photo].self, forKey: CodingKeys.photos)
+        self.photos = try container.decode([Photo].self)
     }
 }

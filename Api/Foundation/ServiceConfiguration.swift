@@ -10,9 +10,9 @@ public class ServiceConfiguration {
     func host<T: Endpoint>(for endpoint: T) -> String {
         if let host = endpointConfiguration.operations[T.name]?.host {
             return host
-        }
-        
-        fatalError("`host` is not set on Endpoint `\(endpoint)`")
+        } else {
+            return endpointConfiguration.host
+        }        
     }
     
     func resource<T: Endpoint>(for endpoint: T) -> String {
@@ -31,3 +31,4 @@ public class ServiceConfiguration {
         return method.rawValue
     }
 }
+

@@ -11,6 +11,7 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
 
     private enum Constant {
         static let photoCellIdentifier = String(describing: PhotoTableViewCell.self)
+        static let minCellHeight: CGFloat = 70
     }
     
     // MARK: - Private outlets
@@ -20,6 +21,8 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
             tableView.register(cellNib, forCellReuseIdentifier: Constant.photoCellIdentifier)
             
             tableView.dataSource = self
+            tableView.delegate = self
+            tableView.estimatedRowHeight = UITableView.automaticDimension
         }
     }
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
@@ -29,10 +32,12 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
     
     // MARK: - Private properties
     private var kitchen: AnyKitchen<PhotosListKitchen.ViewEvent, PhotosListKitchen.Command>!
-
+    private var router: PhotosListRoutable!
+    
     // MARK: - Methods
-    func inject(kitchen: AnyKitchen<PhotosListKitchen.ViewEvent, PhotosListKitchen.Command>) {
+    func inject(kitchen: AnyKitchen<PhotosListKitchen.ViewEvent, PhotosListKitchen.Command>, router: PhotosListRoutable) {
         self.kitchen = kitchen
+        self.router = router
     }
     
     override func viewDidLoad() {
@@ -45,6 +50,7 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
         switch command {
         case .present(let viewState):
             self.viewState = viewState
+            tableView.reloadData()
         case .presentError(let title, let description):
             handlePresentError(withTitle: title, description: description)
         case .startLoading:
@@ -82,5 +88,12 @@ extension PhotosListViewController: UITableViewDataSource {
         cell.configure(with: cellViewState)
         
         return cell
+    }
+}
+
+extension PhotosListViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constant.minCellHeight
     }
 }

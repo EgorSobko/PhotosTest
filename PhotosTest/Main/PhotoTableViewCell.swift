@@ -19,7 +19,6 @@ class PhotoTableViewCell: UITableViewCell {
     // MARK: - Methods
     func configure(with viewState: ViewState) {
         imageTask?.cancel()
-        photoImageView.image = nil
         
         imageTask = viewState.imageURL.flatMap { Nuke.loadImage(with: $0, into: photoImageView) }
         photoDescriptionLabel.text = viewState.description

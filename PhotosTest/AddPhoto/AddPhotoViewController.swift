@@ -3,18 +3,32 @@ import Kit
 
 extension AddPhotoViewController {
     struct ViewState {
-        
+        let photoTitleDescription: String
+        let albumTitleDescription: String
+        let submitButtonTitle: String
+        let availableTitles: [String]
     }
 }
 
 class AddPhotoViewController: UIViewController, KitchenDelegate {
     
+    private enum Constant {
+        static let defaultCellIdentifier = "defaultCellIdentifier"
+    }
+    
+    // MARK: - Private outlets
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var photoTitleDescriptionLabel: UILabel!
     @IBOutlet private weak var photoTitleDescriptionTextField: UITextField!
     @IBOutlet private weak var albumTitleDescriptionLabel: UILabel!
-    @IBOutlet private weak var albumTitlesTableView: UITableView!
+    @IBOutlet private weak var albumTitlesTableView: UITableView! {
+        didSet {
+            albumTitlesTableView.dataSource = self
+            albumTitlesTableView.delegate = self
+        }
+    }
     @IBOutlet private weak var submitButton: UIButton!
+    @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
     
     // MARK: - Properties
     private(set) var viewState: ViewState?
@@ -42,31 +56,70 @@ class AddPhotoViewController: UIViewController, KitchenDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        kitchen.receive(event: .viewDidLoad)
     }
     
     func perform(_ command: AddPhotoKitchen.Command) {
-        
+        switch command {
+        case .present(let viewState):
+            apply(viewState)
+        case .presentError(let title, let description):
+            handlePresentError(withTitle: title, description: description)
+        case .startLoadingTitles:
+            loadingIndicator.isHidden = false
+            albumTitlesTableView.isHidden = true
+        case .stopLoadingTitles:
+            loadingIndicator.isHidden = true
+            albumTitlesTableView.isHidden = false
+        }
     }
     
     // MARK: - Private methods
+    private func apply(_ viewState: ViewState) {
+        self.viewState = viewState
+        
+        photoTitleDescriptionLabel.text = viewState.photoTitleDescription
+        albumTitleDescriptionLabel.text = viewState.albumTitleDescription
+        submitButton.setTitle(viewState.submitButtonTitle, for: .normal)
+        
+        if !viewState.availableTitles.isEmpty {
+            albumTitlesTableView.reloadData()
+        }
+    }
     
+    private func handlePresentError(withTitle title: String, description: String) {
+        let alertViewController = UIAlertController(title: title, message: description, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertViewController.addAction(okAction)
+        
+        present(alertViewController, animated: true, completion: nil)
+    }
 }
 
 extension AddPhotoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return viewState?.availableTitles.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let title = viewState?.availableTitles[indexPath.row] else {
+            return UITableViewCell()
+        }
+        
+        let cell: UITableViewCell
+        if let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: Constant.defaultCellIdentifier) {
+            cell = dequeuedCell
+        } else {
+            cell = UITableViewCell(style: .default, reuseIdentifier: Constant.defaultCellIdentifier)
+        }
+        
+        cell.textLabel?.text = title
+        
+        return cell
     }
 }
 
 extension AddPhotoViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 0
-    }
 }

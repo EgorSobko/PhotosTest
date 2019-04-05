@@ -29,7 +29,7 @@ class AddPhotoBuilder {
     
     // MARK: - Private methods
     private func buildKitchen() -> AddPhotoKitchen {
-        let viewStateFactory = PhotosListViewStateFactory()
+        let viewStateFactory = AddPhotoViewStateFactory()
         let photosService = photosServiceFactory.make()
         
         return AddPhotoKitchen(viewStateFactory: viewStateFactory, photosService: photosService)

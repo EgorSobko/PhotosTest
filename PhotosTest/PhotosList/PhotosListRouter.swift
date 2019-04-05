@@ -26,6 +26,8 @@ class PhotosListRouter {
 
 extension PhotosListRouter: PhotosListRoutable {
     func goToAddPhoto() {
+        guard let currentViewController = currentViewController else { return }
         
+        AddPhotoRouter().execute(in: currentViewController)
     }
 }

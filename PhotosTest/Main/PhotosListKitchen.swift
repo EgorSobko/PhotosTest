@@ -5,6 +5,7 @@ import Kit
 extension PhotosListKitchen {
     enum ViewEvent {
         case viewDidLoad
+        case didTapAddPhoto
     }
     
     enum Command {
@@ -12,6 +13,7 @@ extension PhotosListKitchen {
         case presentError(title: String, description: String)
         case startLoading
         case stopLoading
+        case routeToAddPhoto
     }
 }
 
@@ -35,6 +37,8 @@ class PhotosListKitchen: Kitchen {
         switch event {
         case .viewDidLoad:
             handleViewDidLoad()
+        case .didTapAddPhoto:
+            delegate?.perform(.routeToAddPhoto)
         }
     }
     

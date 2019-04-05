@@ -44,6 +44,7 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar()
         kitchen.receive(event: .viewDidLoad)
     }
     
@@ -60,16 +61,27 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
         case .stopLoading:
             loadingIndicator.isHidden = true
             tableView.isHidden = false
+        case .routeToAddPhoto:
+            router.goToAddPhoto()
         }
     }
     
     // MARK: - Private methods
+    private func setupNavigationBar() {
+        let rightNavigationButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPhoto))
+        navigationItem.rightBarButtonItem = rightNavigationButton
+    }
+    
     private func handlePresentError(withTitle title: String, description: String) {
         let alertViewController = UIAlertController(title: title, message: description, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertViewController.addAction(okAction)
         
         present(alertViewController, animated: true, completion: nil)
+    }
+    
+    @objc private func addPhoto() {
+        kitchen.receive(event: .didTapAddPhoto)
     }
 }
 

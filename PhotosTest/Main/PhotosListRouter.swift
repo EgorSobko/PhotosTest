@@ -3,7 +3,7 @@ import Kit
 import Api
 
 protocol PhotosListRoutable {
-    
+    func goToAddPhoto()
 }
 
 class PhotosListRouter {
@@ -25,5 +25,7 @@ class PhotosListRouter {
 }
 
 extension PhotosListRouter: PhotosListRoutable {
-    
+    func goToAddPhoto() {
+        
+    }
 }

@@ -12,6 +12,7 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
     private enum Constant {
         static let photoCellIdentifier = String(describing: PhotoTableViewCell.self)
     }
+    
     // MARK: - Private outlets
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -23,7 +24,7 @@ class PhotosListViewController: UIViewController, KitchenDelegate {
     }
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
     
-    // MARK: - Properrties
+    // MARK: - Properties
     private(set) var viewState: ViewState?
     
     // MARK: - Private properties
@@ -81,5 +82,5 @@ extension PhotosListViewController: UITableViewDataSource {
         cell.configure(with: cellViewState)
         
         return cell
-    }    
+    }
 }

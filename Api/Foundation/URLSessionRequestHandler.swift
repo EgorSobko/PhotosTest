@@ -9,13 +9,18 @@ class URLSessionRequestHandler: HTTPRequestHandler {
         self.urlSession = urlSession
     }
     
-    func handleRequest(_ urlRequest: URLRequest) -> Future<Data, ServiceTransportError> {
-        let promise = Promise<Data, ServiceTransportError>()
+    func handleRequest(_ urlRequest: URLRequest) -> Future<Data?, ServiceTransportError> {
+        let promise = Promise<Data?, ServiceTransportError>()
         let task = urlSession.dataTask(with: urlRequest) { data, response, error in
-            if let error = error {
-                promise.failure(ServiceTransportError.network(error: error, httpURLResponse: response, errorBody: data))
-            } else if let data = data {
+            guard let httpResponse = response as? HTTPURLResponse else {
+                promise.failure(ServiceTransportError.unexpected)
+                return
+            }
+            
+            if 200..<300 ~= httpResponse.statusCode {
                 promise.success(data)
+            } else {
+                promise.failure(ServiceTransportError.network(error: error, httpURLResponse: httpResponse, errorBody: data))
             }
         }
         task.resume()

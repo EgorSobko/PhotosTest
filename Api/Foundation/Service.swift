@@ -8,7 +8,7 @@ public enum HTTPMethod: String {
 }
 
 public enum ServiceTransportError: Error {
-    case network(error: Error, httpURLResponse: URLResponse?, errorBody: Data?)
+    case network(error: Error?, httpURLResponse: HTTPURLResponse?, errorBody: Data?)
     case objectMapping(error: Error)
     case unexpected
 }
@@ -40,8 +40,8 @@ open class Service {
         let requestPromise = Promise<T.ReturnType, ServiceTransportError>()
         requestHandler.handleRequest(theURLRequest).onComplete { result in
             switch result {
-            case .success(let response):
-                let mappedResult = self.mapValue(endpoint, response)
+            case .success(let data):
+                let mappedResult = self.mapValue(endpoint, data)
                 switch mappedResult {
                 case .success(let mappedValue):
                     requestPromise.success(mappedValue)
@@ -92,7 +92,11 @@ open class Service {
         return request
     }
     
-    private func mapValue<T: Endpoint>(_ endpoint: T, _ responseData: Data) -> Result<T.ReturnType, ServiceTransportError> {
+    private func mapValue<T: Endpoint>(_ endpoint: T, _ responseData: Data?) -> Result<T.ReturnType, ServiceTransportError> {
+        guard let responseData = responseData else {
+            return Result(error: ServiceTransportError.unexpected)
+        }
+        
         do {
             let decoder = JSONDecoder()
             let decodedValue = try decoder.decode(T.ReturnType.self, from: responseData)

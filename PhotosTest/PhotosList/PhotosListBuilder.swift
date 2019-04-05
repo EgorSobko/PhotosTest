@@ -19,7 +19,7 @@ class PhotosListBuilder {
     // MARK: - Methods
     func buildViewController() -> UIViewController {
         let photosViewController = viewControllerFactory.createViewController(type: PhotosListViewController.self,
-                                                                              storyboardName: "Main",
+                                                                              storyboardName: "PhotosList",
                                                                               storyboardIdentifer: String(describing: PhotosListViewController.self))
         let photosKitchen = buildKitchen()
         let anyKitchen = AnyKitchen(photosKitchen)

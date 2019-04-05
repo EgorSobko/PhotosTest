@@ -12,7 +12,7 @@
 		48DE37C8276E39A18A932B62 /* Pods_PhotosTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520738E75C93A9BECDB35369 /* Pods_PhotosTest.framework */; };
 		52A611E9C6CDAFCC93FB67EF /* Pods_Api.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AD28BAC2AF77CCE5477517 /* Pods_Api.framework */; };
 		57A39F7B2256383300AF87F7 /* PhotosListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39F7A2256383300AF87F7 /* PhotosListViewController.swift */; };
-		57A39F7E2256383300AF87F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57A39F7C2256383300AF87F7 /* Main.storyboard */; };
+		57A39F7E2256383300AF87F7 /* PhotosList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57A39F7C2256383300AF87F7 /* PhotosList.storyboard */; };
 		57A39F832256383400AF87F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57A39F812256383400AF87F7 /* LaunchScreen.storyboard */; };
 		57A39F8E2256383400AF87F7 /* PhotosTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39F8D2256383400AF87F7 /* PhotosTestTests.swift */; };
 		57A39F9A225640CB00AF87F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A39F99225640CB00AF87F7 /* AppDelegate.swift */; };
@@ -129,7 +129,7 @@
 		520738E75C93A9BECDB35369 /* Pods_PhotosTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotosTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A39F752256383300AF87F7 /* PhotosTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A39F7A2256383300AF87F7 /* PhotosListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListViewController.swift; sourceTree = "<group>"; };
-		57A39F7D2256383300AF87F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		57A39F7D2256383300AF87F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhotosList.storyboard; sourceTree = "<group>"; };
 		57A39F822256383400AF87F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57A39F892256383400AF87F7 /* PhotosTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotosTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A39F8D2256383400AF87F7 /* PhotosTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTestTests.swift; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 		57A39F772256383300AF87F7 /* PhotosTest */ = {
 			isa = PBXGroup;
 			children = (
-				57A39FC322564CCE00AF87F7 /* Main */,
+				57A39FC322564CCE00AF87F7 /* PhotosList */,
 				57A39FBE225641B600AF87F7 /* Resources */,
 				57A39F982256409600AF87F7 /* AppDelegate */,
 			);
@@ -326,10 +326,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		57A39FC322564CCE00AF87F7 /* Main */ = {
+		57A39FC322564CCE00AF87F7 /* PhotosList */ = {
 			isa = PBXGroup;
 			children = (
-				57A39F7C2256383300AF87F7 /* Main.storyboard */,
+				57A39F7C2256383300AF87F7 /* PhotosList.storyboard */,
 				57A39F7A2256383300AF87F7 /* PhotosListViewController.swift */,
 				57A39FE02256AE0F00AF87F7 /* PhotosListKitchen.swift */,
 				57A39FE22256AE2100AF87F7 /* PhotosListViewStateFactory.swift */,
@@ -338,7 +338,7 @@
 				57A3A0132257554000AF87F7 /* PhotosListBuilder.swift */,
 				57A3A0152257554B00AF87F7 /* PhotosListRouter.swift */,
 			);
-			path = Main;
+			path = PhotosList;
 			sourceTree = "<group>";
 		};
 		57A39FC42256605200AF87F7 /* Foundation */ = {
@@ -645,7 +645,7 @@
 			files = (
 				57A3A010225740EE00AF87F7 /* PhotoTableViewCell.xib in Resources */,
 				57A39F832256383400AF87F7 /* LaunchScreen.storyboard in Resources */,
-				57A39F7E2256383300AF87F7 /* Main.storyboard in Resources */,
+				57A39F7E2256383300AF87F7 /* PhotosList.storyboard in Resources */,
 				57A39FC2225641FF00AF87F7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -974,12 +974,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		57A39F7C2256383300AF87F7 /* Main.storyboard */ = {
+		57A39F7C2256383300AF87F7 /* PhotosList.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				57A39F7D2256383300AF87F7 /* Base */,
 			);
-			name = Main.storyboard;
+			name = PhotosList.storyboard;
 			sourceTree = "<group>";
 		};
 		57A39F812256383400AF87F7 /* LaunchScreen.storyboard */ = {

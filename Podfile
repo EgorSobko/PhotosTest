@@ -19,6 +19,19 @@ target 'Api' do
 
 end
 
+target 'Kit' do
+  use_frameworks!
+
+  target 'KitTests' do
+    inherit! :search_paths
+
+  pod 'Quick', "#{QUICK_VERSION}"
+  pod 'Nimble', "#{NIMBLE_VERSION}"
+
+  end
+
+end
+
 target 'PhotosTest' do
   use_frameworks!
 

@@ -1,7 +1,7 @@
 platform :ios, '12.0'
 
-BRIGHTFUTURES_VERSION = "7.0.1"
-NUKE_VERSION = "7.5.1"
+BRIGHTFUTURES_VERSION = "8.0.0"
+NUKE_VERSION = "7.6.2"
 
 target 'Api' do
   use_frameworks!

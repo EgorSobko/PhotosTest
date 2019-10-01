@@ -1,6 +1,5 @@
 import BrightFutures
 import Foundation
-import Result
 
 class URLSessionRequestHandler: HTTPRequestHandler {
     private let urlSession: URLSession

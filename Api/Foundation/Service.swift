@@ -1,6 +1,5 @@
 import BrightFutures
 import Foundation
-import Result
 
 public enum HTTPMethod: String {
     case get = "GET"
